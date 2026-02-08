@@ -1,26 +1,45 @@
-# ===== Look =====
-set font "JetBrainsMono Nerd Font 11"
+# ==========================================
+# One Dark Pro Theme
+# ==========================================
+set default-bg                  "#282c34"
+set default-fg                  "#abb2bf"
 
-set default-bg "#1a1b26"
-set default-fg "#c0caf5"
+set statusbar-bg                "#21252b"
+set statusbar-fg                "#abb2bf"
 
-set statusbar-bg "#1a1b26"
-set statusbar-fg "#c0caf5"
+set inputbar-bg                 "#282c34"
+set inputbar-fg                 "#e06c75"
 
-set inputbar-bg "#1a1b26"
-set inputbar-fg "#c0caf5"
+set notification-bg             "#282c34"
+set notification-fg             "#98c379"
 
-set notification-bg "#1a1b26"
-set notification-fg "#c0caf5"
+set notification-error-bg       "#282c34"
+set notification-error-fg       "#e06c75"
 
-set highlight-color "#7aa2f7"
-set highlight-active-color "#bb9af7"
+set notification-warning-bg     "#282c34"
+set notification-warning-fg     "#d19a66"
 
-# ===== Page =====
-set page-padding 5
-set window-title-basename true
+set highlight-color             "#61afef"
+set highlight-active-color      "#c678dd"
 
-# ===== Navigation =====
+set completion-bg               "#21252b"
+set completion-fg               "#61afef"
+set completion-highlight-bg     "#2c313a"
+set completion-highlight-fg     "#abb2bf"
+
+set index-bg                    "#282c34"
+set index-fg                    "#abb2bf"
+set index-active-bg             "#2c313a"
+set index-active-fg             "#61afef"
+
+set recolor                     "true"
+set recolor-lightcolor          "#282c34"
+set recolor-darkcolor           "#abb2bf"
+
+# ==========================================
+# Vim Motions & Keybindings
+# ==========================================
+
 map j scroll down
 map k scroll up
 map h scroll left
@@ -28,45 +47,28 @@ map l scroll right
 
 map J navigate next
 map K navigate previous
-
 map gg navigate top
 map G navigate bottom
 
-# ===== Zoom =====
 map + zoom in
 map - zoom out
 map = zoom in
-map _ zoom out
+map i zoom in
+map o zoom out
 
-set zoom-min 10
-set zoom-max 1000
-set zoom-step 10
+map / focus_inputbar "/"
+map ? focus_inputbar "?"
+map n search forward
+map N search backward
 
-# ===== Rotation =====
 map r rotate
-
-# ===== Search =====
-map / search forward
-map ? search backward
-map n search next
-map N search previous
-
-# ===== Links =====
+map R reload
 map f follow
+map [p] print
 
-# ===== Selection =====
-map v toggle_selection
-map y copy_selection
-
-# ===== Notes (PDF) =====
-map a set_mode annotate
-
-# ===== Mouse ======
 set selection-clipboard clipboard
-set scroll-page-aware true
-set smooth-scroll true
-
-# ===== Performance =====
+set scroll-step 50
+set zoom-step 10
 set render-loading true
-set render-loading-fg "#7aa2f7"
-set window-title-home-tilde true
+set scroll-full-overlap 0.01
+set show-wm-left-statusbar true

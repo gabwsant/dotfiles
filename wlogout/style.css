@@ -1,0 +1,78 @@
+@define-color base #0b0c0e;
+@define-color surface #131416;
+@define-color overlay #1b1c1f;
+@define-color highlightLow #0b0c0e;
+@define-color highlightMed #131416;
+@define-color highlightHigh #1b1c1f;
+
+@define-color text #e8e8ef;
+@define-color muted #8f8f9b;
+@define-color subtle #8f8f9b;
+
+@define-color love #ff7b8f;
+@define-color gold #ffcc91;
+@define-color rose #ffb2e4;
+@define-color pine #d3fa83;
+@define-color foam #67f1d2;
+@define-color iris #bea5ff;
+
+* {
+    font-family: "BlexMono Nerd Font", FontAwesome, sans-serif;
+    background-image: none;
+    transition: 20ms;
+    box-shadow: none;
+}
+
+window {
+    background-color: rgba(19, 20, 22, 0.8);
+    font-size: 0px;
+    color: @text;
+}
+
+button {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 30%;
+    background-color: @surface;
+    border-radius: 15px;
+    border: 2px solid @highlightLow;
+    margin: 10px;
+    transition: all 0.2s ease-in-out;
+}
+
+button:focus,
+button:hover {
+    background-color: @highlightMed;
+    border-color: @pine;
+    background-size: 35%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+button span {
+    font-size: 1.2em;
+    margin: 5px;
+}
+
+#lock {
+    background-image: image(url("icons/lock.png"));
+}
+
+#logout {
+    background-image: image(url("icons/logout.png"));
+}
+
+#suspend {
+    background-image: image(url("icons/suspend.png"));
+}
+
+#hibernate {
+    background-image: image(url("icons/hibernate.png"));
+}
+
+#shutdown {
+    background-image: image(url("icons/shutdown.png"));
+}
+
+#reboot {
+    background-image: image(url("icons/reboot.png"));
+}
