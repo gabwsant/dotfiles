@@ -29,9 +29,13 @@
             ""
         ]
     },
+
     "clock": {
-        "format-alt": "{:%a, %d. %b  %H:%M}"
+      "format": "{:%H:%M}",
+      "format-alt": "{:%a, %d %b %Y  %H:%M}",
+      "tooltip-format": "<tt>{calendar}</tt>"
     },
+
     "network": {
         "format-wifi": "  {essid}",
         "format-ethernet": "󰈀  {ipaddr}",
@@ -90,5 +94,5 @@
     },
     "tray": {
         "spacing": 10
-    }
+    },
 }
