@@ -8,7 +8,7 @@ return {
         transparency = true,
         cursorline = true,
       },
-    }, 
+    },
   },
 
   -- Define o One Dark Pro como o tema padrão do LazyVim
