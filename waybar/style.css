@@ -1,104 +1,72 @@
+/* Cores One Dark Pro */
+@define-color bg #282c34;
+@define-color fg #abb2bf;
+@define-color blue #61afef;
+@define-color purple #c678dd;
+@define-color green #98c379;
+@define-color red #e06c75;
+@define-color orange #d19a66;
+@define-color gray #3e4452;
+
 * {
     border: none;
-    font-family: "JetBrainsMono Nerd Font Propo", Adwaita-Mono, Roboto, Helvetica, Arial, sans-serif;
-    font-size: 14px;
-    min-height: 0;
-    margin: 0;
-    padding: 0;
+    font-family: "JetBrainsMono Nerd Font", "Roboto";
+    font-size: 13px;
+    font-weight: bold;
 }
 
 window#waybar {
-    background: transparent;
+    background: transparent; /* Deixa a barra flutuando */
 }
 
-tooltip {
-  background: rgba(43, 48, 59, 0.5);
-  border: 1px solid rgba(100, 114, 125, 0.5);
-}
-tooltip label {
-  color: white;
-}
-
-#workspaces {
-    transition: all 250ms ease-in-out;
+/* Estilo Geral dos Módulos */
+#workspaces, #clock, #battery, #pulseaudio, #backlight, #network, #cpu, #memory, #tray {
+    background: alpha(@bg, 0.85); /* Transparência suave */
+    color: @fg;
+    padding: 0px 12px;
+    margin: 4px 3px;
+    border-radius: 8px;
+    border: 1px solid alpha(@gray, 0.5);
 }
 
+/* Customização Específica */
 #workspaces button {
-    padding: 0 5px;
-    margin: 0 2px;
-    background: alpha(#121212, 0.8);
-    color: #e8eaed;
-    border-bottom: 3px solid transparent;
-    transition: all 200ms ease-in-out;
-    border: 1px solid #434343;
-    border-radius: 10px;
+    color: @gray;
+    padding: 0 4px;
 }
 
 #workspaces button.active {
-    min-width: 50px;
-    background-color: #e8eaed;
-    color: #121212;
-    border-radius: 100px;
-    border: 0px;
+    color: @blue;
+}
+
+#workspaces button.urgent {
+    color: @red;
 }
 
 #clock {
-    font-weight: 700;
+    color: @purple;
+    border-bottom: 2px solid @purple;
 }
 
-#battery {
-    background-color: #b7d8aa;
-    color: #121212;
-    padding: 0 5px;
-    margin: 0 5px;
-    border-radius: 10px;
+#cpu { color: @green; }
+#memory { color: @orange; }
+
+#battery.charging { color: @green; }
+#battery.critical:not(.charging) {
+    color: @red;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
 
-#pulseaudio {
-    background-color: #7aa2f7;
-    color: #1a1b26;
-    border-radius: 10px;
-    padding: 0 5px;
-    margin: 0 5px;
-    font-weight: bold;
-}
+#pulseaudio { color: @blue; }
+#network { color: @orange; }
 
-#pulseaudio.muted {
-    background-color: #f7768e;
-    color: #1a1b26;
-}
-
-#backlight {
-    background-color: #e0af68;
-    color: #1a1b26;
-    border-radius: 10px;
-    padding: 0 5px;
-    margin: 0 5px;
-}
-
-#network {
-    background-color: #bb9af7;
-    color: #1a1b26;
-    border-radius: 10px;
-    padding: 0 10px;
-    margin: 0 5px;
-    font-weight: bold;
-}
-
-#network.disconnected {
-    background-color: #f7768e;
-    color: #1a1b26;
-}
-
-
-#network.ethernet {
-    background-color: #73daca;
-}
-
-#tray {
-    background-color: #6e78a3;
-    color: #1a1b26;
-    border-radius: 10px;
-    padding: 0 10px;
-    margin: 0 5px;
+@keyframes blink {
+    to {
+        background-color: @red;
+        color: @bg;
+    }
 }

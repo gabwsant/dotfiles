@@ -2,97 +2,57 @@
     "layer": "top",
     "position": "top",
     "exclusive": true,
-    "margin-top": 10,
-    "width": 1200,
-    "modules-left": [
-        "hyprland/workspaces"
-    ],
-    "modules-center": [
-        "clock"
-    ],
-    "modules-right": [
-        "tray",
-        "backlight",
-        "pulseaudio",
-        "battery"
-    ],
-    "sway/window": {
-        "max-length": 50
+    "margin-top": 5,
+    "margin-left": 10,
+    "margin-right": 10,
+    "spacing": 4,
+    "modules-left": ["hyprland/workspaces", "cpu", "memory"],
+    "modules-center": ["clock"],
+    "modules-right": ["tray", "backlight", "pulseaudio", "battery", "network"],
+
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "on-click": "activate",
+        "format-icons": {
+            "active": "",
+            "default": ""
+        },
+        "sort-by-number": true
+    },
+    "cpu": {
+        "format": "  {usage}%",
+        "interval": 2
+    },
+    "memory": {
+        "format": "  {}%",
+        "interval": 5
+    },
+    "clock": {
+        "format": "  {:%H:%M}",
+        "format-alt": "  {:%A, %B %d, %Y}",
+        "tooltip-format": "<tt>{calendar}</tt>"
     },
     "battery": {
-        "format": "{capacity}% {icon}",
-        "format-icons": [
-            "",
-            "",
-            "",
-            "",
-            ""
-        ]
-    },
-
-    "clock": {
-      "format": "{:%H:%M}",
-      "format-alt": "{:%a, %d %b %Y  %H:%M}",
-      "tooltip-format": "<tt>{calendar}</tt>"
-    },
-
-    "network": {
-        "format-wifi": "  {essid}",
-        "format-ethernet": "󰈀  {ipaddr}",
-        "format-linked": "󰈀 {ifname} (No IP)",
-        "format-disconnected": "󰲛 Disconnected",
-        "tooltip-format": "{ifname} via {gwaddr} 󰊗",
-        "tooltip-format-wifi": "Signal: {signalStrength}% | Speed: {bandwidthDownBits}",
-        "tooltip-format-ethernet": "Interface: {ifname} ",
-        "tooltip-format-disconnected": "Disconnected",
-        "on-click": "nm-connection-editor",
-        "max-length": 50
-    },
-    "hyprland/workspaces": {
-        "format": "{name}",
-        "persistent-workspaces": {
-            "*": 5 // 5 workspaces by default on every monitor
-        }
+        "states": { "warning": 30, "critical": 15 },
+        "format": "{icon} {capacity}%",
+        "format-charging": "󱐋 {capacity}%",
+        "format-icons": ["", "", "", "", ""]
     },
     "pulseaudio": {
-        // "scroll-step": 1, // %, se quiser um ajuste muito fino
         "format": "{icon} {volume}%",
-        "format-bluetooth": "{icon} {volume}%",
         "format-muted": "  Muted",
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "󰂑",
-            "headset": "󰂑",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": [
-                "",
-                "",
-                ""
-            ]
-        },
-        "on-click": "pavucontrol",
-        "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+        "format-icons": { "default": ["", "", ""] },
+        "on-click": "pavucontrol"
     },
     "backlight": {
-        //"device": "nvidia0nvidia_wmi_ec_backlight",
         "format": "{icon} {percent}%",
-        "format-icons": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-        ],
-        "on-scroll-up": "brightnessctl set +1%",
-        "on-scroll-down": "brightnessctl set 1%-"
+        "format-icons": ["", "", "", "", "", "", "", "", ""]
     },
-    "tray": {
-        "spacing": 10
+    "network": {
+        "format-wifi": " ",
+        "format-ethernet": "󰈀 ",
+        "format-disconnected": "󰲛 ",
+        "tooltip-format": "{essid} ({signalStrength}%)"
     },
+    "tray": { "spacing": 10 }
 }
