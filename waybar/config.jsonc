@@ -1,58 +1,97 @@
 {
-    "layer": "top",
-    "position": "top",
-    "exclusive": true,
-    "margin-top": 5,
-    "margin-left": 10,
-    "margin-right": 10,
-    "spacing": 4,
-    "modules-left": ["hyprland/workspaces", "cpu", "memory"],
-    "modules-center": ["clock"],
-    "modules-right": ["tray", "backlight", "pulseaudio", "battery", "network"],
+  "reload_style_on_change": true,
+  "layer": "top",
+  "position": "top",
+  "height": 32,
+  "spacing": 0,
 
-    "hyprland/workspaces": {
-        "format": "{icon}",
-        "on-click": "activate",
-        "format-icons": {
-            "active": "",
-            "default": ""
-        },
-        "sort-by-number": true
+  "modules-left": ["custom/launcher", "hyprland/workspaces", "mpris"],
+  "modules-center": ["hyprland/window"],
+  "modules-right": [
+    "group/tray-expander",
+    "backlight",
+    "pulseaudio#output",
+    "pulseaudio#input",
+    "memory",
+    "cpu",
+    "battery",
+    "clock"
+  ],
+
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "on-click": "activate",
+    "format-icons": { "active": "󰮯", "default": "󰊠" }
+  },
+
+  "backlight": {
+    "device": "nvidia_wmi_ec_backlight",
+    "format": "{icon} {percent}%",
+    "format-icons": ["󰃞", "󰃟", "󰃠"],
+    "on-scroll-up": "brightnessctl set 1%+",
+    "on-scroll-down": "brightnessctl set 1%-",
+    "on-click": "brightnessctl set 5%",
+    "tooltip-format": "Brilho: {percent}%",
+    "smooth-scrolling-threshold": 1
+},
+
+  "custom/launcher": {
+    "format": "  ",
+    "on-click": "rofi -show drun",
+    "tooltip": false
+  },
+
+  "clock": {
+    "format": " {:%d/%m %H:%M}", 
+    "format-alt": " {:%A, %B %d, %Y}",
+    "tooltip-format": "<tt>{calendar}</tt>"
+  },
+
+  "cpu": {
+    "interval": 2,
+    "format": " {usage}%"
+  },
+
+  "memory": {
+    "interval": 2,
+    "format": " {percentage}%"
+  },
+
+"pulseaudio#output": {
+    "format": "{icon} {volume}%",
+    "format-muted": "󰝟 Muted",
+    "format-icons": {
+        "headphone": "",
+        "default": ["", "", ""]
     },
-    "cpu": {
-        "format": "  {usage}%",
-        "interval": 2
-    },
-    "memory": {
-        "format": "  {}%",
-        "interval": 5
-    },
-    "clock": {
-        "format": "  {:%H:%M}",
-        "format-alt": "  {:%A, %B %d, %Y}",
-        "tooltip-format": "<tt>{calendar}</tt>"
-    },
-    "battery": {
-        "states": { "warning": 30, "critical": 15 },
-        "format": "{icon} {capacity}%",
-        "format-charging": "󱐋 {capacity}%",
-        "format-icons": ["", "", "", "", ""]
-    },
-    "pulseaudio": {
-        "format": "{icon} {volume}%",
-        "format-muted": "  Muted",
-        "format-icons": { "default": ["", "", ""] },
-        "on-click": "pavucontrol"
-    },
-    "backlight": {
-        "format": "{icon} {percent}%",
-        "format-icons": ["", "", "", "", "", "", "", "", ""]
-    },
-    "network": {
-        "format-wifi": " ",
-        "format-ethernet": "󰈀 ",
-        "format-disconnected": "󰲛 ",
-        "tooltip-format": "{essid} ({signalStrength}%)"
-    },
-    "tray": { "spacing": 10 }
+    "on-click": "pavucontrol",
+    "on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +1%",
+    "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -1%",
+    "scroll-step": 1
+},
+
+"pulseaudio#input": {
+    "format": "{format_source}",
+    "format-source": " {volume}%",
+    "format-source-muted": " Muted",
+    "on-click": "pavucontrol",
+    "on-click-right": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
+    "on-scroll-up": "pactl set-source-volume @DEFAULT_SOURCE@ +1%",
+    "on-scroll-down": "pactl set-source-volume @DEFAULT_SOURCE@ -1%",
+    "scroll-step": 1
+},
+
+  "battery": {
+    "format": "{icon} {capacity}%",
+    "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+  },
+
+  "group/tray-expander": {
+    "orientation": "inherit",
+    "drawer": { "transition-duration": 600 },
+    "modules": ["custom/expand-icon", "tray"]
+  },
+  "custom/expand-icon": { "format": "  ", "tooltip": false },
+  "tray": { "icon-size": 15, "spacing": 10 }
 }

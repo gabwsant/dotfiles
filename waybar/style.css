@@ -1,72 +1,77 @@
-/* Cores One Dark Pro */
-@define-color bg #282c34;
-@define-color fg #abb2bf;
-@define-color blue #61afef;
-@define-color purple #c678dd;
-@define-color green #98c379;
-@define-color red #e06c75;
-@define-color orange #d19a66;
-@define-color gray #3e4452;
+@define-color bg #282a36;
+@define-color curr #44475a;
+@define-color fg #f8f8f2;
+@define-color cyan #8be9fd;
+@define-color green #50fa7b;
+@define-color orange #ffb86c;
+@define-color pink #ff79c6;
+@define-color purple #bd93f9;
+@define-color comment #6272a4;
+@define-color yellow #ffd45e;
 
 * {
     border: none;
-    font-family: "JetBrainsMono Nerd Font", "Roboto";
+    border-radius: 0;
+    font-family: "JetBrainsMono Nerd Font", "Symbols Nerd Font Mono", sans-serif;
     font-size: 13px;
     font-weight: bold;
 }
 
 window#waybar {
-    background: transparent; /* Deixa a barra flutuando */
-}
-
-/* Estilo Geral dos Módulos */
-#workspaces, #clock, #battery, #pulseaudio, #backlight, #network, #cpu, #memory, #tray {
-    background: alpha(@bg, 0.85); /* Transparência suave */
+    background: alpha(@bg, 0.95);
     color: @fg;
-    padding: 0px 12px;
-    margin: 4px 3px;
-    border-radius: 8px;
-    border: 1px solid alpha(@gray, 0.5);
-}
-
-/* Customização Específica */
-#workspaces button {
-    color: @gray;
-    padding: 0 4px;
-}
-
-#workspaces button.active {
-    color: @blue;
-}
-
-#workspaces button.urgent {
-    color: @red;
-}
-
-#clock {
-    color: @purple;
     border-bottom: 2px solid @purple;
 }
 
-#cpu { color: @green; }
-#memory { color: @orange; }
-
-#battery.charging { color: @green; }
-#battery.critical:not(.charging) {
-    color: @red;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+#custom-launcher, #workspaces, #mpris, #window, 
+#backlight, #pulseaudio, #memory, #cpu, #battery, #clock {
+    padding: 0 10px;
 }
 
-#pulseaudio { color: @blue; }
-#network { color: @orange; }
+/* Cores tema Dracula */
+#cpu { color: @orange; }
+#memory { color: @green; }
+#pulseaudio { color: @cyan; }
+#battery { color: @pink; }
 
-@keyframes blink {
-    to {
-        background-color: @red;
-        color: @bg;
-    }
+#clock {
+    color: @bg;
+    background: @purple;
+    padding: 0 15px; 
+    margin-left: 5px;
+}
+
+#workspaces button.active {
+    color: @pink;
+    background: alpha(@pink, 0.1);
+}
+
+#custom-launcher {
+    color: @cyan;
+    background: @curr;
+}
+
+/* Divisores */
+#pulseaudio, #memory, #cpu, #battery {
+    border-left: 1px solid alpha(@comment, 0.2);
+}
+
+#pulseaudio, #pulseaudio.input {
+    transition: all 0.1s ease-in-out;
+}
+
+#pulseaudio:hover, #pulseaudio.input:hover {
+    background-color: alpha(@curr, 0.5);
+}
+
+#backlight {
+    color: @yellow;
+    padding: 0 10px;
+    border-left: 1px solid alpha(@comment, 0.2);
+    transition: all 0.2s ease;
+}
+
+#backlight:hover {
+    background-color: alpha(@yellow, 0.1);
+    color: #ffffff; /* Fica branco ao passar o mouse */
 }
