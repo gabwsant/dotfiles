@@ -82,6 +82,28 @@
     "scroll-step": 1
 },
 
+"mpris": {
+    "format": "{player_icon} {dynamic}",
+    "format-paused": "{status_icon} <i>{dynamic}</i>",
+    "max-length": 45,
+    "player-icons": {
+      "default": "",
+      "spotify": "",
+      "firefox": "",
+      "brave": "",
+      "chromium": "",
+      "vlc": "󰕼"
+    },
+    "status-icons": {
+      "paused": "",
+      "stopped": ""
+    },
+    "ignored-players": ["firefox"],
+    "dynamic-len": 40,
+    "dynamic-order": ["artist", "title"],
+    "dynamic-separator": " - "
+  },
+
   "battery": {
     "format": "{icon} {capacity}%",
     "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
