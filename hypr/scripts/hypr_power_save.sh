@@ -4,12 +4,13 @@
 # Script: hypr_power_save.sh
 #
 # Descrição:
-# Ajusta automaticamente a taxa de atualização do monitor interno e o VRR
-# (Variable Refresh Rate) conforme o estado da alimentação do notebook.
+# Ajusta automaticamente a taxa de atualização do monitor interno, o VRR
+# (Variable Refresh Rate), além do blur e animações conforme o estado
+# da alimentação do notebook.
 #
 # Comportamento:
-# - Conectado na energia (AC): ativa modo performance (144Hz + VRR).
-# - Na bateria: ativa modo economia (60Hz + VRR desligado).
+# - Conectado na energia (AC): ativa modo performance (144Hz + VRR + blur e animações).
+# - Na bateria: ativa modo economia (60Hz + VRR off + blur e animações off).
 #
 # Requisitos:
 # - Hyprland
@@ -50,6 +51,12 @@ if [[ "$(cat "$AC_PATH")" == "1" ]]; then
   echo "Ativando VRR"
   hyprctl keyword misc:vrr 1
 
+  echo "Ativando blur"
+  hyprctl keyword decoration:blur:enabled true
+
+  echo "Ativando animações"
+  hyprctl keyword animations:enabled true
+
   msg="Modo Performance: 144Hz"
 
 else
@@ -61,6 +68,12 @@ else
 
   echo "Desativando VRR"
   hyprctl keyword misc:vrr 0
+
+  echo "Desativando blur"
+  hyprctl keyword decoration:blur:enabled false
+
+  echo "Desativando animações"
+  hyprctl keyword animations:enabled false
 
   msg="Modo Economia: 60Hz"
 
