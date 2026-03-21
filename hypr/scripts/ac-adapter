@@ -1,0 +1,2 @@
+event=ac_adapter.*
+action=/usr/bin/runuser -u gabs /usr/local/bin/hypr_power_save.sh
