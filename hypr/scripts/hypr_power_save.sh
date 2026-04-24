@@ -25,7 +25,7 @@
 
 set -euo pipefail
 
-# Cria um lock file para evitar execuções simultâneas
+# lock file para evitar execuções simultâneas
 exec 9>/tmp/hypr_power.lock
 if ! flock -n 9; then
   exit 0
@@ -54,7 +54,7 @@ fi
 MONITOR=$(sudo -u "$USER_NAME" -E hyprctl monitors -j | jq -r '.[] | select(.name | test("eDP")) | .name')
 RES=$(sudo -u "$USER_NAME" -E hyprctl monitors -j | jq -r '.[] | select(.focused==true) | "\(.width)x\(.height)"')
 
-AC_PATH="/sys/class/power_supply/ADP0/online"
+AC_PATH=$(grep -l "Mains" /sys/class/power_supply/*/type | sed 's/type/online/' | head -n1)
 
 if [ ! -f "$AC_PATH" ]; then
   echo "ERRO CRÍTICO: Arquivo de hardware $AC_PATH não encontrado!"
@@ -64,8 +64,8 @@ fi
 
 ESTADO_AC=$(cat "$AC_PATH")
 
-echo "Leitura: ADP0 está em $ESTADO_AC. Monitor detectado: $MONITOR ($RES)"
-log_msg "Leitura: ADP0 está em $ESTADO_AC. Monitor detectado: $MONITOR ($RES)"
+echo "Leitura: carregador está em $ESTADO_AC. Monitor detectado: $MONITOR ($RES)"
+log_msg "Leitura: carregador está em $ESTADO_AC. Monitor detectado: $MONITOR ($RES)"
 
 if [[ "$ESTADO_AC" == "1" ]]; then
   echo "Modo Performance (AC)"
