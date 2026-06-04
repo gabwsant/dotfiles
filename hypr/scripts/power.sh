@@ -1,77 +1,97 @@
 #!/usr/bin/env bash
 #    ___
-#   / _ \___ _    _____ ____
+#   / _ \___ _     _____ ____
 #  / ___/ _ \ |/|/ / -_) __/
 # /_/   \___/__,__/\__/_/
 #
 
 terminate_clients() {
-  TIMEOUT=5
-  # Get a list of all client PIDs in the current Hyprland session
-  client_pids=$(hyprctl clients -j | jq -r '.[] | .pid')
+  local timeout=5
+  local start_time
+  local current_time
+  local elapsed=0
 
-  # Send SIGTERM (kill -15) to each client PID and wait for termination
-  for pid in $client_pids; do
-    echo ":: Sending SIGTERM to PID $pid"
-    kill -15 $pid
-  done
+  local client_pids
+  client_pids=$(hyprctl clients -j | jq -r '.[] | select(.pid > 0) | .pid' | sort -u)
+
+  if [[ -z "$client_pids" ]]; then
+    echo ":: Nenhum cliente ativo encontrado."
+    return 0
+  fi
+
+  echo ":: Enviando SIGTERM para os clientes..."
+  echo "$client_pids" | xargs -r kill -15 2>/dev/null
 
   start_time=$(date +%s)
-  for pid in $client_pids; do
-    # Wait for the process to terminate
-    while kill -0 $pid 2>/dev/null; do
-      current_time=$(date +%s)
-      elapsed_time=$((current_time - start_time))
 
-      if [ $elapsed_time -ge $TIMEOUT ]; then
-        echo ":: Timeout reached."
-        return 0
+  while true; do
+    local still_running=0
+    for pid in $client_pids; do
+      if kill -0 "$pid" 2>/dev/null; then
+        still_running=$((still_running + 1))
       fi
-
-      echo ":: Waiting for PID $pid to terminate..."
-      sleep 1
     done
 
-    echo ":: PID $pid has terminated."
+    if [[ $still_running -eq 0 ]]; then
+      echo ":: Todos os clientes foram encerrados com sucesso."
+      break
+    fi
+
+    current_time=$(date +%s)
+    elapsed=$((current_time - start_time))
+
+    if [[ $elapsed -ge $timeout ]]; then
+      echo ":: Timeout de $timeout segundos atingido. Forçando encerramento..."
+      for pid in $client_pids; do
+        if kill -0 "$pid" 2>/dev/null; then
+          echo ":: Forçando PID $pid (SIGKILL)"
+          kill -9 "$pid" 2>/dev/null
+        fi
+      done
+      break
+    fi
+
+    echo ":: Aguardando $still_running processo(s) terminar(em)... ($elapsed s)"
+    sleep 0.5
   done
 }
 
-if [[ "$1" == "exit" ]]; then
-  echo ":: Exit"
+case "$1" in
+exit)
+  echo ":: Encerrando sessão"
   terminate_clients
-  sleep 0.5
-  hyprshutdown
-  sleep 2
-fi
-
-if [[ "$1" == "lock" ]]; then
-  echo ":: Lock"
-  sleep 0.5
+  sleep 0.2
+  hyprshutdown --vt 1
+  ;;
+lock)
+  echo ":: Bloqueando tela"
+  sleep 0.2
   hyprlock
-fi
-
-if [[ "$1" == "reboot" ]]; then
-  echo ":: Reboot"
+  ;;
+reboot)
+  echo ":: Reiniciando"
   terminate_clients
-  sleep 0.5
+  sleep 0.2
   systemctl reboot
-fi
-
-if [[ "$1" == "shutdown" ]]; then
-  echo ":: Shutdown"
+  ;;
+shutdown)
+  echo ":: Desligando"
   terminate_clients
-  sleep 0.5
+  sleep 0.2
   systemctl poweroff
-fi
-
-if [[ "$1" == "suspend" ]]; then
-  echo ":: Suspend"
-  sleep 0.5
+  ;;
+suspend)
+  echo ":: Suspendendo"
+  sleep 0.2
   systemctl suspend
-fi
-
-if [[ "$1" == "hibernate" ]]; then
-  echo ":: Hibernate"
-  sleep 1
+  ;;
+hibernate)
+  echo ":: Hibernando"
+  sleep 0.2
   systemctl hibernate
-fi
+  ;;
+*)
+  echo "Uso: ${0##*/} {exit|lock|reboot|shutdown|suspend|hibernate}"
+  exit 1
+  ;;
+esac
