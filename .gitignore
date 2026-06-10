@@ -15,3 +15,8 @@ tokens
 # lazy nvim
 .repro.lua
 lazy-lock.json
+
+
+# Shaders cache directory
+mpv/shaders/cache
+mpv/.DS_Store
