@@ -30,6 +30,9 @@ hl.bind(
 
 hl.bind(mainMod .. " + Q", hl.dsp.window.close())
 hl.bind(mainMod .. " + Z", hl.dsp.window.float({ action = "toggle" }))
+hl.bind(mainMod .. " + SHIFT + A", hl.dsp.window.cycle_next({ tiled = true }))
+hl.bind(mainMod .. " + Y", hl.dsp.window.pin({ action = "toggle" }))
+hl.bind(mainMod .. " + A", hl.dsp.window.cycle_next({ floating = true }))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + ALT_L", hl.dsp.layout("togglesplit"))
 hl.bind(mainMod .. " + SPACE", hl.dsp.window.fullscreen({ mode = 1 }))
@@ -38,6 +41,11 @@ hl.bind(mainMod .. " + SHIFT + H", hl.dsp.window.resize({ x = -20, y = 0, relati
 hl.bind(mainMod .. " + SHIFT + L", hl.dsp.window.resize({ x = 20, y = 0, relative = true }), { repeating = true })
 hl.bind(mainMod .. " + SHIFT + J", hl.dsp.window.resize({ x = 0, y = 20, relative = true }), { repeating = true })
 hl.bind(mainMod .. " + SHIFT + K", hl.dsp.window.resize({ x = 0, y = -20, relative = true }), { repeating = true })
+hl.bind(mainMod .. " + TAB", hl.dsp.focus({ workspace = "previous" }))
+hl.bind(mainMod .. " + ALT + h", hl.dsp.window.move({ direction = "left" }))
+hl.bind(mainMod .. " + ALT + j", hl.dsp.window.move({ direction = "down" }))
+hl.bind(mainMod .. " + ALT + k", hl.dsp.window.move({ direction = "up" }))
+hl.bind(mainMod .. " + ALT + l", hl.dsp.window.move({ direction = "right" }))
 
 -- ======================================================
 -- Clipboard
