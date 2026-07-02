@@ -97,6 +97,13 @@ hl.window_rule({
 	},
 })
 
+-- Pavucontrol
+hl.window_rule({
+	float = true,
+	match = { class = "pavucontrol" },
+	workspace = "current",
+})
+
 -- ======================================================
 -- Workspaces Rules
 -- ======================================================
@@ -114,4 +121,3 @@ for i = 6, 10 do
 		monitor = "DP-1",
 	})
 end
-
