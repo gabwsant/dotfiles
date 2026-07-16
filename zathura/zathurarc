@@ -45,11 +45,6 @@ map k scroll up
 map h scroll left
 map l scroll right
 
-map J navigate next
-map K navigate previous
-map gg navigate top
-map G navigate bottom
-
 map + zoom in
 map - zoom out
 map = zoom in
