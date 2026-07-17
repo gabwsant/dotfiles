@@ -1,40 +1,4 @@
-# ==========================================
-# One Dark Pro Theme
-# ==========================================
-set default-bg                  "#282c34"
-set default-fg                  "#abb2bf"
-
-set statusbar-bg                "#21252b"
-set statusbar-fg                "#abb2bf"
-
-set inputbar-bg                 "#282c34"
-set inputbar-fg                 "#e06c75"
-
-set notification-bg             "#282c34"
-set notification-fg             "#98c379"
-
-set notification-error-bg       "#282c34"
-set notification-error-fg       "#e06c75"
-
-set notification-warning-bg     "#282c34"
-set notification-warning-fg     "#d19a66"
-
-set highlight-color             "#61afef"
-set highlight-active-color      "#c678dd"
-
-set completion-bg               "#21252b"
-set completion-fg               "#61afef"
-set completion-highlight-bg     "#2c313a"
-set completion-highlight-fg     "#abb2bf"
-
-set index-bg                    "#282c34"
-set index-fg                    "#abb2bf"
-set index-active-bg             "#2c313a"
-set index-active-fg             "#61afef"
-
-set recolor                     "true"
-set recolor-lightcolor          "#282c34"
-set recolor-darkcolor           "#abb2bf"
+include catppuccin-mocha
 
 # ==========================================
 # Vim Motions & Keybindings

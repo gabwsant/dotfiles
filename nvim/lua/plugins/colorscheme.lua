@@ -1,21 +1,17 @@
 return {
-  -- Instala o One Dark Pro
   {
-    "olimorris/onedarkpro.nvim",
+    "catppuccin/nvim",
+    name = "catppuccin",
     priority = 1000,
     opts = {
-      options = {
-        transparency = true,
-        cursorline = true,
-      },
+      transparent_background = true,
+      auto_integrations = true,
     },
   },
-
-  -- Define o One Dark Pro como o tema padrão do LazyVim
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "onedark",
+      colorscheme = "catppuccin-mocha",
     },
   },
 }
