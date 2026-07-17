@@ -13,13 +13,11 @@ hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + F", hl.dsp.exec_cmd(browser))
 hl.bind("XF86Calculator", hl.dsp.exec_cmd("kalk"))
+hl.bind(mainMod .. " + END", hl.dsp.exec_cmd("killall waybar || waybar"))
 
 -- Logout / shutdown
 hl.bind(mainMod .. " + ESCAPE", hl.dsp.exec_cmd("~/.config/hypr/scripts/powermenu.sh"))
-hl.bind(
-	mainMod .. " + M",
-	hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch exit")
-)
+hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("hyprshutdown"))
 
 -- ======================================================
 -- Utilities
@@ -28,7 +26,9 @@ hl.bind(
 -- Clipboard
 hl.bind(
 	mainMod .. " + V",
-	hl.dsp.exec_cmd("cliphist list | rofi -dmenu -display-columns 2 | cliphist decode | wl-copy")
+	hl.dsp.exec_cmd(
+		"cliphist list | rofi -dmenu -display-columns 2 | cliphist decode | wl-copy && wtype -M ctrl -M shift -P v -m ctrl -m shift -p v"
+	)
 )
 
 -- Hyprshot
@@ -38,6 +38,9 @@ hl.bind(mainMod .. " + SHIFT + P", hl.dsp.exec_cmd("hyprshot -m region"))
 
 -- Hyprpicker
 hl.bind(mainMod .. " + C", hl.dsp.exec_cmd("hyprpicker -a"))
+
+-- Dunst
+hl.bind(mainMod .. " + D", hl.dsp.exec_cmd("~/.config/hypr/scripts/dunst-history.sh"))
 
 -- ======================================================
 -- Window States & Layout
