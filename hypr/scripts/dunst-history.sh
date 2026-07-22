@@ -1,13 +1,18 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-notification_list=$(dunstctl history | jq -r '
-  .data[0] | reverse | .[] | 
-  "[" + (.appname.data // "Sem Nome") + "] " + (.summary.data // "Sem Título") + " - " + (.body.data // "Sem Conteúdo")
-' 2>/dev/null)
+NOTIFICATIONS=$(dunstctl history | jq -r '.data[0][] | "\(.id.data) | \(.appname.data): \(.summary.data | gsub("\n"; " "))"')
 
-if [ -z "$notification_list" ]; then
-  echo "Nenhuma notificação no histórico." | rofi -dmenu -p "Notificações" -theme-str 'window {width: 300px;}'
+if [ -z "$NOTIFICATIONS" ]; then
+  rofi -e "No notifications in the history."
   exit 0
 fi
 
-echo "$notification_list" | rofi -dmenu -i -p "Histórico" -theme-str 'window {width: 800px;}'
+CHOSEN=$(echo "$NOTIFICATIONS" | rofi -dmenu -i -p "Old notifications:")
+
+if [ -z "$CHOSEN" ]; then
+  exit 0
+fi
+
+NOTIFICATION_ID=$(echo "$CHOSEN" | awk -F ' \\| ' '{print $1}')
+
+dunstctl history-pop "$NOTIFICATION_ID"
