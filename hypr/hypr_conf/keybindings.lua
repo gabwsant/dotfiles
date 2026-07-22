@@ -36,9 +36,6 @@ hl.bind(mainMod .. " + PRINT", hl.dsp.exec_cmd("hyprshot -m window"))
 hl.bind("PRINT", hl.dsp.exec_cmd("hyprshot -m output"))
 hl.bind(mainMod .. " + SHIFT + P", hl.dsp.exec_cmd("hyprshot -m region"))
 
--- Hyprpicker
-hl.bind(mainMod .. " + C", hl.dsp.exec_cmd("hyprpicker -a"))
-
 -- Dunst
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd("~/.config/hypr/scripts/dunst-history.sh"))
 
@@ -47,10 +44,14 @@ hl.bind(mainMod .. " + D", hl.dsp.exec_cmd("~/.config/hypr/scripts/dunst-history
 -- ======================================================
 
 hl.bind(mainMod .. " + Q", hl.dsp.window.close())
+hl.bind(
+	mainMod .. " + W",
+	hl.dsp.exec_cmd("rofi -show window -theme-str 'listview {columns: 2; lines: 4; flow: horizontal;}' ")
+)
 hl.bind(mainMod .. " + Z", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + Y", hl.dsp.window.pin({ action = "toggle" }))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
-hl.bind(mainMod .. " + ALT_L", hl.dsp.layout("togglesplit"))
+hl.bind(mainMod .. " + C", hl.dsp.layout("togglesplit"))
 hl.bind(mainMod .. " + SPACE", hl.dsp.window.fullscreen({ mode = 1 }))
 hl.bind(mainMod .. " + SHIFT + SPACE", hl.dsp.window.fullscreen())
 
@@ -65,8 +66,8 @@ hl.bind(mainMod .. " + k", hl.dsp.focus({ direction = "up" }))
 hl.bind(mainMod .. " + l", hl.dsp.focus({ direction = "right" }))
 
 -- Cycle windows
-hl.bind(mainMod .. " + SHIFT + A", hl.dsp.window.cycle_next({ tiled = true }))
-hl.bind(mainMod .. " + A", hl.dsp.window.cycle_next({ floating = true }))
+hl.bind(mainMod .. " + A", hl.dsp.window.cycle_next({ tiled = true }))
+hl.bind(mainMod .. " + SHIFT + A", hl.dsp.window.cycle_next({ floating = true }))
 
 -- ======================================================
 -- Window Moving & Resizing
