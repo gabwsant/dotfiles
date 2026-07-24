@@ -47,7 +47,7 @@ Make assets folder.
 Clone:
 
 ```bash
-git clone https://github.com/SEU_USUARIO/dotfiles.git
+git clone https://github.com/gabwsant/dotfiles.git
 cd dotfiles
 ```
 
