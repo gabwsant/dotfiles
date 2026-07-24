@@ -1,6 +1,6 @@
 # Dotfiles
 
-These dotfiles are built for a simple, efficient and stylish Arch Linux environment using Hyprland (Wayland) as the window manager.
+These dotfiles are built for a useful and stylish Arch Linux environment using Hyprland (Wayland) as the window manager.
 
 It's not 100% pure my creation, there are configs from many repos. It also includes many optional packages and tools that I personally use - you don't need to install all of them.
 
