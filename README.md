@@ -6,9 +6,11 @@ It's not 100% pure my creation, there are configs from many repos. It also inclu
 
 ---
 
-## Preview
+## Showcase
 
-Make assets folder.
+![Screenshot 1](showcase/screenshot-1.png)
+![Screenshot 2](showcase/screenshot-2.png)
+![Screenshot 3](showcase/screenshot-3.png)
 
 ---
 
