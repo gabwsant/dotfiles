@@ -1,76 +1,59 @@
 # Dotfiles
 
-Minha configuração pessoal para **Arch Linux** utilizando **Hyprland** como compositor Wayland.
+These dotfiles are built for a simple, efficient and stylish Arch Linux environment using Hyprland (Wayland) as the window manager.
 
-> **Status:** Em constante evolução. Algumas configurações podem mudar sem aviso.
+It's not 100% pure my creation, there are configs from many repos. It also includes many optional packages and tools that I personally use - you don't need to install all of them.
 
 ---
 
 ## Preview
 
-
-
-Criar pasta assets
+Make assets folder.
 
 ---
 
-## Principais recursos
+## Softwares
 
-* Hyprland em Lua
-* Waybar personalizada
-* Rofi como launcher
-* Kitty como terminal
-* Neovim (LazyVim)
-* Bash
-* Dunst para notificações
-* Hyprlock
-* Hypridle
-* Hyprpaper
-* Hyprsunset
-* Catppuccin Mocha
-* Scripts utilitários para automação
+| Category           | Software   |
+| ------------------ | ---------- |
+| WM                 | Hyprland   |
+| Lock screen        | Hyprlock   |
+| Idle               | Hypridle   |
+| Wallpaper          | Hyprpaper  |
+| Blue light filter  | Hyprsunset |
+| Bar                | Waybar     |
+| Launcher           | Rofi       |
+| Terminal           | Kitty      |
+| Editor             | Neovim     |
+| PDF                | Zathura    |
+| Notifications      | Dunst      |
+| Media player       | mpv        |
+| Process management | btop       |
 
----
-
-## Software utilizado
-
-| Categoria       | Programa  |
-| --------------- | --------- |
-| WM              | Hyprland  |
-| Barra           | Waybar    |
-| Launcher        | Rofi      |
-| Terminal        | Kitty     |
-| Shell           | Bash      |
-| Editor          | Neovim    |
-| PDF             | Zathura   |
-| Notificações    | Dunst     |
-| Bloqueio        | Hyprlock  |
-| Idle            | Hypridle  |
-| Papel de parede | Hyprpaper |
 
 ---
 
-## Tema
+## Theme
 
 * GTK: Catppuccin Mocha
-* Ícones: Papirus
+* Icons: Papirus
 * Cursor: Catppuccin
-* Fonte: JetBrains Mono Nerd Font
+* Font: JetBrains Mono Nerd Font
 
 ---
 
-## Instalação
+## Install
 
-Clone o repositório:
+Clone:
 
 ```bash
 git clone https://github.com/SEU_USUARIO/dotfiles.git
 cd dotfiles
 ```
 
-Faça backup dos seus arquivos atuais.
+Backup your current files.
 
-Depois crie os links simbólicos:
+Make symbolic links:
 
 ```bash
 ln -sf ~/dotfiles/hypr ~/.config/hypr
@@ -78,9 +61,10 @@ ln -sf ~/dotfiles/waybar ~/.config/waybar
 ln -sf ~/dotfiles/kitty ~/.config/kitty
 ln -sf ~/dotfiles/rofi ~/.config/rofi
 ln -sf ~/dotfiles/nvim ~/.config/nvim
+etc...
 ```
 
-Ou utilize o script:
+Or execute the script:
 
 ```bash
 ./install.sh
@@ -88,31 +72,32 @@ Ou utilize o script:
 
 ---
 
-## Dependências
+## Dependencies
 
-Instale os pacotes necessários.
+Intall needed packages:
 
 ```text
 hyprland
-waybar
-kitty
-rofi-wayland
-dunst
 hyprlock
 hypridle
 hyprpaper
 hyprsunset
+hyprshutdown
+waybar
+kitty
+rofi
+dunst
 neovim
 zathura
 papirus-icon-theme
 ttf-jetbrains-mono-nerd
+
+jq
 ```
 
 ---
 
 ## Wallpapers
-
-Os wallpapers utilizados estão em:
 
 ```text
 wallpapers/
@@ -122,19 +107,17 @@ wallpapers/
 
 ## Scripts
 
-A pasta `scripts/` contém pequenos utilitários para:
+`scripts/` folder has some utilities for:
 
-* trocar wallpaper
-* controlar brilho
-* controlar volume
-* capturar screenshots
-* iniciar aplicações
-* atualizar configurações
+* Power saving for laptops
+* Rofi's menus for dunst and power
+* Power (shutdown safely)
+* Airplane mode
 
 ---
 
-## Observações
+## Caution
 
-Estas configurações foram feitas para o meu ambiente de trabalho e podem não funcionar perfeitamente em outros computadores sem adaptações.
+These dotfiles were made for my desktop and may not work properly without adaptations.
 
-Sinta-se à vontade para reutilizar partes do projeto ou adaptá-las às suas necessidades.
+Feel free to use parts of the project or adapt to your needs.
