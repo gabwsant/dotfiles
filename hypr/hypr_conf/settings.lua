@@ -11,6 +11,7 @@ hl.config({
 	misc = {
 		force_default_wallpaper = -1,
 		disable_hyprland_logo = true,
+		disable_splash_rendering = true,
 		vrr = 2,
 	},
 })
@@ -33,6 +34,7 @@ hl.config({
 		numlock_by_default = true,
 		touchpad = {
 			natural_scroll = false,
+			scroll_factor = 0.3,
 		},
 	},
 	xwayland = {
