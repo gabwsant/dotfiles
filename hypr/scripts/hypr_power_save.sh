@@ -70,7 +70,7 @@ log_msg "Leitura: carregador está em $ESTADO_AC. Monitor detectado: $MONITOR ($
 if [[ "$ESTADO_AC" == "1" ]]; then
   echo "Modo Performance (AC)"
   log_msg "Modo Performance (AC)"
-  sudo -u "$USER_NAME" -E hyprctl eval "hl.monitor({ output = '${MONITOR}', mode = '${RES}@144', position = '0x0', scale = '1' })"
+  sudo -u "$USER_NAME" -E hyprctl eval "hl.monitor({ output = '${MONITOR}', mode = '${RES}@144', position = '0x0', scale = '1.25' })"
   sudo -u "$USER_NAME" -E hyprctl eval "hl.config({ misc = { vrr = 2 }, decoration = { blur = { enabled = true } }, animations = { enabled = true } })"
   msg="Modo Performance: 144Hz"
 else
